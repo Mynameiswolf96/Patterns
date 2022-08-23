@@ -15,7 +15,7 @@ namespace Asteroids
         private Rigidbody _rb;
         private Camera _camera;
         private Ship _ship;
-        private HP _hp;
+        private Health _hp;
         private Shooting _shooting;
         
         private void Start()
@@ -25,7 +25,7 @@ namespace Asteroids
             var moveTransform = new AccelerationMove(transform, _speed, _acceleration);
             var rotation = new RotationShip(transform);
             _ship = new Ship(moveTransform, rotation);
-            _hp = new HP(_maxHealth, _maxHealth);
+            _hp = new Health(_maxHealth, _maxHealth);
             _shooting = new Shooting(_bullet, _barrel, _force);
         }
         
@@ -50,10 +50,6 @@ namespace Asteroids
                 _shooting.BulletShooting();
             }
         }
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-           _hp.ChangeHP(damage,gameObject);
-        }
+        
     }
 }
